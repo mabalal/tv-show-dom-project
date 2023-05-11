@@ -1,28 +1,31 @@
 //You can edit ALL of the code here
 
-//creating function for search 
-const searchInput = document.getElementById("searchInput");
-searchInput.addEventListener("input", findEpisode)
-function findEpisode() {
-const searchInput = document.getElementById("searchInput").value.toLowerCase();
-const filterEpisode = allEpisodes.filter(episode =>{
-  if(episode.name.toLowerCase().includes(searchInput)||episode.summary.toLowerCase().includes(searchInput)) {
-    return episode
-  }
-})
-document.querySelector("#number").innerText = filterEpisode.length;
-makePageForEpisodes(filterEpisode);
-};
-
+let allEpisodes = getAllEpisodes();
 function setup() {
-  const allEpisodes = getAllEpisodes();
   makePageForEpisodes(allEpisodes);
+}
+ //creating search bar//
+ searchElem= document.querySelector("#search")
+searchElem.addEventListener("input", searchEpisode);
+
+function searchEpisode(){
+  const searchInput = searchElem.value.toLowerCase();
+  const filteredEpisodes = allEpisodes.filter(episode => {
+      if (episode.name.toLowerCase().includes(searchInput) || episode.summary.toLowerCase().includes(searchInput)){
+      return episode;
+      }
+  })
+
+  document.querySelector("#num").innerText = filteredEpisodes.length;
+  makePageForEpisodes(filteredEpisodes);
+  
 }
 
 function makePageForEpisodes(episodeList) {
 const rootElem = document.getElementById("root");
 rootElem.textContent = `Got ${episodeList.length} episode(s)`;
 // for (let i = 0; i < episodeList.length; i++) {
+
 //top container
 const topContainer = document.createElement("div");
 topContainer.classList.add("top-Container");
@@ -74,6 +77,10 @@ summeryContainer.innerHTML = `${episodeList[i].summary}`;
 console.log(episodeList);
   }
 
-
+let footerEle= document.getElementById("footer");
+const footerLink = document.createElement("a");
+footerLink.href = "https://www.tvmaze.com/"
+footerLink.textContent = "data from tvmaze.com";
+footerEle.appendChild(footerLink);
 
 window.onload = setup;
