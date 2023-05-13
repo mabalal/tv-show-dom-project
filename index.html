@@ -11,15 +11,20 @@
   </head>
 
   <body>
+    <div id="selectBar">
+      <select id="selector" class="form-control"></select>
+    </div>
     <h1>Search Your Movie</h1>
+  <div id="episode-list"></div>
+
     <input type="text" id="search" placeholder="Search" placeholder ="search TV episode
     ">
     <label for="search">Display <span id="num">73</span>73 Episodes</label>
     <ul id="results"></ul>
     <div id="root">
-      <div id="footer"></div>
       
     </div>
+    <div id="footer"></div>
 
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
