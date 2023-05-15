@@ -14,31 +14,26 @@ selectElem.appendChild(optionElem);
 allEpisodes.forEach((ele) => {
   let options = document.createElement("option");
   options.value = ele.name;
-  options.innerText = `S${ele.season.toString().padStart(2, "0")}E${ele.number
+  options.innerText = `${ele.name} - S${ele.season
     .toString()
-    .padStart(2, "0")}- ${ele.name}`;
+    .padStart(2, "0")}E${ele.number.toString().padStart(2, "0")}`;
   selectElem.appendChild(options);
 });
 
 selectElem.addEventListener("change", function () {
-  //we will clear the container
-  let clearContainer = document.querySelector(".top-Container");
-  console.log(clearContainer);
-  //find the selected movie-card
-  //add that card in that container
+  let selectedEpisode = selectElem.value;
+  let episodes = Array.from(document.getElementsByClassName("movie-card"));
 
-  // let selectedEpisode = selectElem.value;
-  // let episodes = Array.from(document.getElementsByClassName("movie-card"));
-  // episodes.forEach((episode) => {
-  //   let h1Element = document.querySelector("h1");
-  //   console.log(h1Element);
-  //   if (h1Element.innerText.includes(selectedEpisode)) {
-  //     episode.style.display = "block";
-  //     document.querySelector("#num").innerText = 1;
-  //   } else {
-  //     episode.style.display = "none";
-  //   }
-  // });
+  episodes.forEach((episode) => {
+    let h1Element = document.querySelector("h1");
+    console.log(h1Element);
+    if (h1Element.innerText.includes(selectedEpisode)) {
+      episode.style.display = "block";
+      document.querySelector("#num").innerText = 1;
+    } else {
+      episode.style.display = "none";
+    }
+  });
 });
 
 //creating search bar//
@@ -63,6 +58,7 @@ function searchEpisode() {
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
   rootElem.textContent = `Got ${episodeList.length} episode(s)`;
+  // for (let i = 0; i < episodeList.length; i++) {
 
   //top container
   const topContainer = document.createElement("div");
