@@ -14,6 +14,9 @@
 
   <body>
     <div class="header-container" id="header-container">
+      <div class="show-selector">
+        <select name="show-list" id="show-select" class="show-select"></select>
+      </div>
       <div id="selectBar">
         <select id="selector" class="form-control"></select>
       </div>
@@ -22,7 +25,6 @@
         <input
           type="text"
           id="search"
-          placeholder="Search"
           placeholder="search TV episode
     "
         />
@@ -39,5 +41,7 @@
 
     <!-- Loads YOUR javascript code -->
     <script src="script.js"></script>
+    <!-- loading getAllShows function -->
+    <script src="shows.js"></script>
   </body>
 </html>

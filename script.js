@@ -6,7 +6,46 @@ function setup() {
 }
 
 // headerContainer.classList.add("header-container");
+//Level 350 - Switch to fetching live data!
+function fetchAllEpisodes(series) {
+  return fetch(`https://api.tvmaze.com/shows/${series}/episodes`)
+    .then((response) => response.json())
+    .then((data) => {
+      allEpisodes = data;
+      makePageForEpisodes(allEpisodes);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
 
+function tvSeriesSetup(showList) {
+  let selectSeries = document.getElementById("show-select");
+  let optionSeries = document.createElement("option");
+  optionSeries.textContent = "Please Choose Your Show";
+  selectSeries.appendChild(optionSeries);
+  selectSeries.selectedIndex = 0;
+
+  //sorting based on alphabetical order
+  showList.sort(function (a, b) {
+    return a.name.localeCompare(b.name);
+  });
+  for (let i = 0; i < showList.length; i++) {
+    let option = document.createElement("option");
+    option.value = showList[i].id;
+    option.textContent = `${showList[i].name}`;
+    selectSeries.appendChild(option);
+  }
+  selectSeries.addEventListener("change", function () {
+    console.log(selectSeries.value);
+    fetchAllEpisodes(selectSeries.value);
+  });
+}
+//its optional will refactor later
+function setup() {
+  const seriesList = getAllShows();
+  tvSeriesSetup(seriesList);
+}
 //creating search bar//
 const searchElem = document.querySelector("#search");
 searchElem.addEventListener("input", searchEpisode);
@@ -24,17 +63,17 @@ function searchEpisode() {
   document.querySelector("#num").innerText = filteredEpisodes.length;
   makePageForEpisodes(filteredEpisodes);
 }
-//heading of number of episodes//
+//creating function//
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
   rootElem.textContent = "";
 
-  //top container
+  //top container which will wrap all movieCart
   const topContainer = document.createElement("div");
   topContainer.classList.add("top-container");
   rootElem.appendChild(topContainer);
   for (let i = 0; i < episodeList.length; i++) {
-    //this is movieCard
+    //this is movieCard in which all title, photo and summery will be appended.
     const movieCard = document.createElement("div");
     movieCard.classList.add("movie-card");
     const testElement = document.createElement("p");
@@ -85,7 +124,7 @@ function makePageForEpisodes(episodeList) {
     summaryContainer.appendChild(episodeSummary);
     summaryContainer.innerHTML = `${episodeList[i].summary}`;
 
-    ///for select option 300
+    ///creating div for level 300 and appended rootElm inside
     let episodeDivContainer = document.createElement("div");
     episodeDivContainer.classList.add("episode-container");
     episodeDivContainer.id = "episode-container" + i;
