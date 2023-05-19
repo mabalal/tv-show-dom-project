@@ -6,24 +6,32 @@
     <title>TV Show Project | Mahendra Balal (mabalal)</title>
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-    <meta name="description"
-      content="This is a web application that displays information about TV shows using data from TVMaze.com">
+    <meta
+      name="description"
+      content="This is a web application that displays information about TV shows using data from TVMaze.com"
+    />
   </head>
 
   <body>
-    <div id="selectBar">
-      <select id="selector" class="form-control"></select>
-    </div>
-    <h1>Search Your Movie</h1>
-  <div id="episode-list"></div>
+    <div class="header-container" id="header-container">
+      <div id="selectBar">
+        <select id="selector" class="form-control"></select>
+      </div>
 
-    <input type="text" id="search" placeholder="Search" placeholder ="search TV episode
-    ">
-    <label for="search">Display <span id="num">73</span>73 Episodes</label>
-    <ul id="results"></ul>
-    <div id="root">
-      
+      <div class="search">
+        <input
+          type="text"
+          id="search"
+          placeholder="Search"
+          placeholder="search TV episode
+    "
+        />
+        <label for="search">Got <span id="num">0</span> Episode(s)</label>
+      </div>
     </div>
+
+    <div id="root"></div>
+    <p class="selected-card"></p>
     <div id="footer"></div>
 
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
@@ -31,6 +39,5 @@
 
     <!-- Loads YOUR javascript code -->
     <script src="script.js"></script>
-
   </body>
 </html>

@@ -5,41 +5,11 @@ function setup() {
   makePageForEpisodes(allEpisodes);
 }
 
-//creating select bar for episodes for level 300
-let selectElem = document.querySelector("#selector");
-let optionElem = document.createElement("option");
-optionElem.innerText = "Please Choose Your Episodes";
-selectElem.appendChild(optionElem);
-
-allEpisodes.forEach((ele) => {
-  let options = document.createElement("option");
-  options.value = ele.name;
-  options.innerText = `${ele.name} - S${ele.season
-    .toString()
-    .padStart(2, "0")}E${ele.number.toString().padStart(2, "0")}`;
-  selectElem.appendChild(options);
-});
-
-selectElem.addEventListener("change", function () {
-  let selectedEpisode = selectElem.value;
-  let episodes = Array.from(document.getElementsByClassName("movie-card"));
-
-  episodes.forEach((episode) => {
-    let h1Element = document.querySelector("h1");
-    console.log(h1Element);
-    if (h1Element.innerText.includes(selectedEpisode)) {
-      episode.style.display = "block";
-      document.querySelector("#num").innerText = 1;
-    } else {
-      episode.style.display = "none";
-    }
-  });
-});
+// headerContainer.classList.add("header-container");
 
 //creating search bar//
-searchElem = document.querySelector("#search");
+const searchElem = document.querySelector("#search");
 searchElem.addEventListener("input", searchEpisode);
-
 function searchEpisode() {
   const searchInput = searchElem.value.toLowerCase();
   const filteredEpisodes = allEpisodes.filter((episode) => {
@@ -57,17 +27,18 @@ function searchEpisode() {
 //heading of number of episodes//
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
-  rootElem.textContent = `Got ${episodeList.length} episode(s)`;
-  // for (let i = 0; i < episodeList.length; i++) {
+  rootElem.textContent = "";
 
   //top container
   const topContainer = document.createElement("div");
-  topContainer.classList.add("top-Container");
+  topContainer.classList.add("top-container");
   rootElem.appendChild(topContainer);
   for (let i = 0; i < episodeList.length; i++) {
-    //this is movieCart
+    //this is movieCard
     const movieCard = document.createElement("div");
     movieCard.classList.add("movie-card");
+    const testElement = document.createElement("p");
+    movieCard.appendChild(testElement);
     topContainer.appendChild(movieCard);
 
     //Assigning TV episodes in p element
@@ -105,22 +76,55 @@ function makePageForEpisodes(episodeList) {
     episodeImage.src = episodeList[i].image.medium;
 
     //creating summary div//
-    let summeryContainer = document.createElement("div");
-    summeryContainer.classList.add("summary-container");
-    movieCard.appendChild(summeryContainer);
+    let summaryContainer = document.createElement("div");
+    summaryContainer.classList.add("summary-container");
+    movieCard.appendChild(summaryContainer);
 
     //creating episodeSummary//
     const episodeSummary = document.createElement("p");
-    summeryContainer.appendChild(episodeSummary);
-    summeryContainer.innerHTML = `${episodeList[i].summary}`;
+    summaryContainer.appendChild(episodeSummary);
+    summaryContainer.innerHTML = `${episodeList[i].summary}`;
+
+    ///for select option 300
+    let episodeDivContainer = document.createElement("div");
+    episodeDivContainer.classList.add("episode-container");
+    episodeDivContainer.id = "episode-container" + i;
+    rootElem.appendChild(episodeDivContainer);
   }
-  console.log(episodeList);
+
+  //creating select bar for episodes for level 300
+
+  let selectElem = document.querySelector("#selector");
+  let optionElem = document.createElement("option");
+  optionElem.innerText = "Please Choose Your Episodes";
+  selectElem.appendChild(optionElem);
+
+  allEpisodes.forEach((ele) => {
+    let options = document.createElement("option");
+    options.value = ele.name;
+    options.innerText = `${ele.name} - S${ele.season
+      .toString()
+      .padStart(2, "0")}E${ele.number.toString().padStart(2, "0")}`;
+    selectElem.appendChild(options);
+  });
+
+  selectElem.addEventListener("change", function () {
+    let selectOption = selectElem.selectedIndex - 1;
+    let episodeDivContainer = document.getElementById(
+      "episode-container" + selectOption
+    );
+    episodeDivContainer.scrollIntoViewIfNeeded({ behavior: "smooth" });
+  });
 
   //creating footer
   let footerEle = document.getElementById("footer");
   const footerLink = document.createElement("a");
   footerLink.href = "https://www.tvmaze.com/";
-  footerLink.textContent = "data from tvmaze.com";
+  const textNode = document.createTextNode(
+    "Copyright 2020. All data comes from: "
+  );
+  footerEle.appendChild(textNode);
+  footerLink.textContent = "www.tvmaze.com";
   footerEle.appendChild(footerLink);
 }
 window.onload = setup;

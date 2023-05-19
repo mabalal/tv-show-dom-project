@@ -1,33 +1,55 @@
 #root {
   color: rgb(28, 28, 30);
 }
-.top-Container {
-  display: grid;
-    grid-template-columns:repeat(3,1fr);
-    grid-auto-rows: auto;
-    grid-gap: 10px;
-  background-color: none;
-
-  
+body {
+  background-color: gray;
 }
+
+.top-container {
+  background-color: lightslategray;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  grid-gap: 10px;
+  border: none;
+  padding: 5px;
+  margin: 10px;
+}
+.header-container {
+  display: flex;
+  background-color: none;
+  justify-content: space-between;
+  height: 30px;
+}
+.search {
+  height: 30px;
+}
+/* .episode-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  grid-gap: 10px;
+  background-color: none;
+} */
 .movie-card {
   background-color: rgb(166, 155, 155);
   border-radius: 15px;
+  padding-top: 0px;
+  margin-top: 0px;
+  padding-bottom: 10px;
   /* display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 3px; */
-  
-  
 }
 .epName {
   text-align: center;
   font-size: 23px;
   color: white;
   background-color: black;
-  margin: 0px;
+  margin-top: 0px;
+  padding-top: 0px;
 }
 .summery-container {
-  color: white;
 }
 .image-container {
   padding-top: 5px;
@@ -35,7 +57,4 @@
   text-align: center;
   height: auto;
   width: auto;
-}
-p {
-  color: black;
 }
