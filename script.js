@@ -27,9 +27,23 @@ function tvSeriesSetup(showList) {
   selectSeries.selectedIndex = 0;
 
   //sorting based on alphabetical order
-  showList.sort(function (a, b) {
-    return a.name.localeCompare(b.name);
+
+  // showList.sort(function (a, b) {
+  //   return a.name.localeCompare(b.name);
+  // });
+  // showList.sort();
+  // console.log(showList);
+  showList.sort((a, b) => {
+    //even though top one is working tried another one for sorting alphabetical order. will delet when i final refactor.
+    if (a.name.toLowerCase() > b.name.toLowerCase()) {
+      return 1;
+    }
+    if (a.name.toLowerCase() < b.name.toLowerCase()) {
+      return -1;
+    }
+    return 0;
   });
+
   for (let i = 0; i < showList.length; i++) {
     let option = document.createElement("option");
     option.value = showList[i].id;
@@ -53,17 +67,18 @@ function searchEpisode() {
   const searchInput = searchElem.value.toLowerCase();
   const filteredEpisodes = allEpisodes.filter((episode) => {
     if (
-      episode.name.toLowerCase().includes(searchInput) ||
-      episode.summary.toLowerCase().includes(searchInput)
+      (episode.name && episode.name.toLowerCase().includes(searchInput)) ||
+      (episode.summary && episode.summary.toLowerCase().includes(searchInput))
     ) {
-      return episode;
+      return true;
     }
+    return false;
   });
 
   document.querySelector("#num").innerText = filteredEpisodes.length;
   makePageForEpisodes(filteredEpisodes);
 }
-//creating function//
+// //creating function//
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
   rootElem.textContent = "";
@@ -94,15 +109,15 @@ function makePageForEpisodes(episodeList) {
     if (episodeNumber < 10) {
       episodeNumber = "0" + episodeNumber;
     }
-    episodeName.innerText =
-      episodeList[i].name +
-      " " +
-      "-" +
-      " " +
-      "S" +
-      episodeSeason +
-      "E" +
-      episodeNumber;
+    episodeName.innerText = `${episodeList[i].name} - S${episodeSeason}E${episodeNumber}`;
+    // episodeList[i].name +
+    // " " +
+    // "-" +
+    // " " +
+    // "S" +
+    // episodeSeason +
+    // "E" +
+    // episodeNumber;
 
     //creating image container div//
     let imageContainer = document.createElement("div");
@@ -125,10 +140,10 @@ function makePageForEpisodes(episodeList) {
     summaryContainer.innerHTML = `${episodeList[i].summary}`;
 
     ///creating div for level 300 and appended rootElm inside
-    let episodeDivContainer = document.createElement("div");
-    episodeDivContainer.classList.add("episode-container");
-    episodeDivContainer.id = "episode-container" + i;
-    rootElem.appendChild(episodeDivContainer);
+    let episodeDivContainer = document.createElement("div"); //created div for selector
+    episodeDivContainer.classList.add("episode-container"); //assign class
+    episodeDivContainer.id = "episode-container" + i; // assigned unique id for div based on value of i.
+    rootElem.appendChild(episodeDivContainer); //appended to root element
   }
 
   //creating select bar for episodes for level 300
@@ -140,7 +155,7 @@ function makePageForEpisodes(episodeList) {
 
   allEpisodes.forEach((ele) => {
     let options = document.createElement("option");
-    options.value = ele.name;
+    options.value = ele.name; //assigns the name property of the ele object to the value property of the options element.
     options.innerText = `${ele.name} - S${ele.season
       .toString()
       .padStart(2, "0")}E${ele.number.toString().padStart(2, "0")}`;
@@ -154,16 +169,17 @@ function makePageForEpisodes(episodeList) {
     );
     episodeDivContainer.scrollIntoViewIfNeeded({ behavior: "smooth" });
   });
-
-  //creating footer
-  let footerEle = document.getElementById("footer");
-  const footerLink = document.createElement("a");
-  footerLink.href = "https://www.tvmaze.com/";
-  const textNode = document.createTextNode(
-    "Copyright 2020. All data comes from: "
-  );
-  footerEle.appendChild(textNode);
-  footerLink.textContent = "www.tvmaze.com";
-  footerEle.appendChild(footerLink);
 }
+
+//creating footer
+let footerEle = document.getElementById("footer");
+const footerLink = document.createElement("a");
+footerLink.href = "https://www.tvmaze.com/";
+const textNode = document.createTextNode(
+  "Copyright 2020. All data comes from: "
+);
+footerEle.appendChild(textNode);
+footerLink.textContent = "www.tvmaze.com";
+footerEle.appendChild(footerLink);
+
 window.onload = setup;
