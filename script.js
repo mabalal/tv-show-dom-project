@@ -1,9 +1,14 @@
 //You can edit ALL of the code here
 
 let allEpisodes = getAllEpisodes();
-function setup() {
-  makePageForEpisodes(allEpisodes);
-}
+// let showList = getAllShows();
+// function setup() {
+//   const showList = getAllShows();
+//   PageForShows(showList);
+//   tvSeriesSetup(showList);
+//   makePageForEpisodes(allEpisodes);
+// }
+// let showList = getAllShows;
 
 // headerContainer.classList.add("header-container");
 //Level 350 - Switch to fetching live data!
@@ -51,15 +56,21 @@ function tvSeriesSetup(showList) {
     selectSeries.appendChild(option);
   }
   selectSeries.addEventListener("change", function () {
-    console.log(selectSeries.value);
     fetchAllEpisodes(selectSeries.value);
   });
 }
-//its optional will refactor later
 function setup() {
-  const seriesList = getAllShows();
-  tvSeriesSetup(seriesList);
+  const showList = getAllShows();
+  // PageForShows(showList);
+  tvSeriesSetup(showList);
+  makePageForEpisodes(allEpisodes);
 }
+
+//its optional will refactor later
+// function setup() {
+//   const seriesList = getAllShows();
+//   tvSeriesSetup(seriesList);
+// }
 //creating search bar//
 const searchElem = document.querySelector("#search");
 searchElem.addEventListener("input", searchEpisode);
@@ -170,6 +181,72 @@ function makePageForEpisodes(episodeList) {
     episodeDivContainer.scrollIntoViewIfNeeded({ behavior: "smooth" });
   });
 }
+
+////////level-500////////
+function PageForShows(showList) {
+  const showListPage = document.getElementById("show-page");
+  showListPage.innerHTML = "";
+  for (let i = 0; i < showList.length; i++) {
+    // Create elements
+    let divCardShow = document.createElement("div");
+    let divTitleShow = document.createElement("div");
+    let imgShow = document.createElement("img");
+    let summaryShow = document.createElement("p");
+
+    // Assign classes for elements
+    divCardShow.classList.add("div-show");
+    divTitleShow.classList.add("title-show");
+    imgShow.classList.add("img-show");
+    summaryShow.classList.add("p-show");
+
+    // Assign content to elements
+    divTitleShow.innerHTML = `${showList[i].name}`;
+    imgShow.src = `${showList[i].image.medium}`;
+    summaryShow.innerHTML = `${showList[i].summary}`;
+
+    // Append elements to parent element
+    divCardShow.appendChild(divTitleShow);
+    divCardShow.appendChild(imgShow);
+    divCardShow.appendChild(summaryShow);
+    showListPage.appendChild(divCardShow);
+  }
+}
+
+// function PageForShows(showList) {
+//   const rootElem = document.getElementById("root");
+//   const showListPage = document.getElementById("show-page");
+//   showListPage.innerHTML = "";
+//   for (let i = 0; i < showList.length; i++) {
+//     //create element
+//     let divCardShow = document.createElement("div");
+//     let divTitleShow = document.createElement("div");
+//     let imgShow = document.createElement("img");
+//     let summaryShow = document.createElement("p");
+//     let linkShow = document.createElement("a");
+
+//     //assigning class for element
+//     divCardShow.classList.add("div-show");
+//     divTitleShow.classList.add("title-show");
+//     imgShow.classList.add("img-show");
+//     summaryShow.classList.add("p-show");
+//     linkShow.classList.add("link-show");
+
+//     // assigning content in element
+//     document.getElementById("divTitleShow");
+//     document.getElementById("imgShow");
+//     document.getElementById("summaryShow");
+//     divTitleShow.innerHTML = `${showList[i].name}`;
+//     imgShow.src = `${showList[i].image.medium}`;
+//     summaryShow.innerHTML = `${showList[i].summary}`;
+
+//     // appending to parent element
+//     divCardShow.appendChild(divTitleShow);
+//     divCardShow.appendChild(imgShow);
+//     divCardShow.appendChild(summaryShow);
+//     showListPage.appendChild(divCardShow);
+//   }
+//   rootElem.appendChild(showListPage);
+// }
 
 //creating footer
 let footerEle = document.getElementById("footer");
