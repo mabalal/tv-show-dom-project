@@ -1,16 +1,23 @@
 //You can edit ALL of the code here
 
 let allEpisodes = getAllEpisodes();
-// let showList = getAllShows();
-// function setup() {
-//   const showList = getAllShows();
-//   PageForShows(showList);
-//   tvSeriesSetup(showList);
-//   makePageForEpisodes(allEpisodes);
-// }
-// let showList = getAllShows;
+let headerContainer = document.getElementById("header-container");
+let logos = document.getElementById("logo");
+// headerContainer.appendChild(logos);
+// let imgLogo = document.createElement("img");
+let videoLogo = document.createElement("video");
+videoLogo.classList.add("video-logo");
+videoLogo.src = "logoVideo.mp4";
+videoLogo.autoplay = true;
+videoLogo.loop = true;
+videoLogo.muted = true;
+// imgLogo.src = "logoImg.png";
+// imgLogo.classList.add("logo-img");
+logos.appendChild(videoLogo);
+// logos.appendChild(imgLogo);
+// headerContainer.insertBefore(imgLogo, logos);
+headerContainer.insertBefore(videoLogo, logos);
 
-// headerContainer.classList.add("header-container");
 //Level 350 - Switch to fetching live data!
 function fetchAllEpisodes(series) {
   return fetch(`https://api.tvmaze.com/shows/${series}/episodes`)
