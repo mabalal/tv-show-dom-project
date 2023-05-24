@@ -14,9 +14,9 @@ videoLogo.muted = true;
 // imgLogo.src = "logoImg.png";
 // imgLogo.classList.add("logo-img");
 logos.appendChild(videoLogo);
-// logos.appendChild(imgLogo);
+// logos.appendChild(imgLogo);f
 // headerContainer.insertBefore(imgLogo, logos);
-headerContainer.insertBefore(videoLogo, logos);
+// headerContainer.insertBefore(logos, selectElem);
 
 //Level 350 - Switch to fetching live data!
 function fetchAllEpisodes(series) {
@@ -68,16 +68,11 @@ function tvSeriesSetup(showList) {
 }
 function setup() {
   const showList = getAllShows();
-  // PageForShows(showList);
   tvSeriesSetup(showList);
+  PageForShows(showList);
   makePageForEpisodes(allEpisodes);
 }
 
-//its optional will refactor later
-// function setup() {
-//   const seriesList = getAllShows();
-//   tvSeriesSetup(seriesList);
-// }
 //creating search bar//
 const searchElem = document.querySelector("#search");
 searchElem.addEventListener("input", searchEpisode);
@@ -128,14 +123,6 @@ function makePageForEpisodes(episodeList) {
       episodeNumber = "0" + episodeNumber;
     }
     episodeName.innerText = `${episodeList[i].name} - S${episodeSeason}E${episodeNumber}`;
-    // episodeList[i].name +
-    // " " +
-    // "-" +
-    // " " +
-    // "S" +
-    // episodeSeason +
-    // "E" +
-    // episodeNumber;
 
     //creating image container div//
     let imageContainer = document.createElement("div");
@@ -185,7 +172,7 @@ function makePageForEpisodes(episodeList) {
     let episodeDivContainer = document.getElementById(
       "episode-container" + selectOption
     );
-    episodeDivContainer.scrollIntoViewIfNeeded({ behavior: "smooth" });
+    episodeDivContainer.scrollIntoView({ behavior: "smooth" });
   });
 }
 
@@ -197,63 +184,34 @@ function PageForShows(showList) {
     // Create elements
     let divCardShow = document.createElement("div");
     let divTitleShow = document.createElement("div");
+    let divForRating = document.createElement("div");
     let imgShow = document.createElement("img");
     let summaryShow = document.createElement("p");
+    let ratingShow = document.createElement("p");
 
     // Assign classes for elements
     divCardShow.classList.add("div-show");
     divTitleShow.classList.add("title-show");
+    divForRating.classList.add("rating-div");
     imgShow.classList.add("img-show");
     summaryShow.classList.add("p-show");
+    ratingShow.classList.add("rating-show");
 
     // Assign content to elements
     divTitleShow.innerHTML = `${showList[i].name}`;
     imgShow.src = `${showList[i].image.medium}`;
     summaryShow.innerHTML = `${showList[i].summary}`;
+    ratingShow.innerHTML = `Rating: ${showList[i].rating.average} <br>Genre:${showList[i].genres}<br> Status: ${showList[i].status} <br>Runtime: ${showList[i].runtime}`;
 
     // Append elements to parent element
     divCardShow.appendChild(divTitleShow);
     divCardShow.appendChild(imgShow);
     divCardShow.appendChild(summaryShow);
+    divCardShow.appendChild(divForRating);
+    divForRating.appendChild(ratingShow);
     showListPage.appendChild(divCardShow);
   }
 }
-
-// function PageForShows(showList) {
-//   const rootElem = document.getElementById("root");
-//   const showListPage = document.getElementById("show-page");
-//   showListPage.innerHTML = "";
-//   for (let i = 0; i < showList.length; i++) {
-//     //create element
-//     let divCardShow = document.createElement("div");
-//     let divTitleShow = document.createElement("div");
-//     let imgShow = document.createElement("img");
-//     let summaryShow = document.createElement("p");
-//     let linkShow = document.createElement("a");
-
-//     //assigning class for element
-//     divCardShow.classList.add("div-show");
-//     divTitleShow.classList.add("title-show");
-//     imgShow.classList.add("img-show");
-//     summaryShow.classList.add("p-show");
-//     linkShow.classList.add("link-show");
-
-//     // assigning content in element
-//     document.getElementById("divTitleShow");
-//     document.getElementById("imgShow");
-//     document.getElementById("summaryShow");
-//     divTitleShow.innerHTML = `${showList[i].name}`;
-//     imgShow.src = `${showList[i].image.medium}`;
-//     summaryShow.innerHTML = `${showList[i].summary}`;
-
-//     // appending to parent element
-//     divCardShow.appendChild(divTitleShow);
-//     divCardShow.appendChild(imgShow);
-//     divCardShow.appendChild(summaryShow);
-//     showListPage.appendChild(divCardShow);
-//   }
-//   rootElem.appendChild(showListPage);
-// }
 
 //creating footer
 let footerEle = document.getElementById("footer");
