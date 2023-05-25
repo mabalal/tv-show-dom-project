@@ -70,7 +70,7 @@ function setup() {
   const showList = getAllShows();
   tvSeriesSetup(showList);
   PageForShows(showList);
-  makePageForEpisodes(allEpisodes);
+  // makePageForEpisodes(allEpisodes);
 }
 
 //creating search bar//
@@ -182,20 +182,22 @@ function PageForShows(showList) {
   showListPage.innerHTML = "";
   for (let i = 0; i < showList.length; i++) {
     // Create elements
-    let divCardShow = document.createElement("div");
+    let divCardShow = document.createElement("div"); //
+    let divTitleImage = document.createElement("div");
     let divTitleShow = document.createElement("div");
-    let divForRating = document.createElement("div");
     let imgShow = document.createElement("img");
+    let divForRating = document.createElement("div");
     let summaryShow = document.createElement("p");
     let ratingShow = document.createElement("p");
 
     // Assign classes for elements
     divCardShow.classList.add("div-show");
+    divTitleImage.classList.add("title-image");
     divTitleShow.classList.add("title-show");
-    divForRating.classList.add("rating-div");
     imgShow.classList.add("img-show");
     summaryShow.classList.add("p-show");
     ratingShow.classList.add("rating-show");
+    divForRating.classList.add("rating-div");
 
     // Assign content to elements
     divTitleShow.innerHTML = `${showList[i].name}`;
@@ -204,12 +206,14 @@ function PageForShows(showList) {
     ratingShow.innerHTML = `Rating: ${showList[i].rating.average} <br>Genre:${showList[i].genres}<br> Status: ${showList[i].status} <br>Runtime: ${showList[i].runtime}`;
 
     // Append elements to parent element
-    divCardShow.appendChild(divTitleShow);
-    divCardShow.appendChild(imgShow);
+    divTitleImage.appendChild(divTitleShow);
+    divTitleImage.appendChild(imgShow);
+    divCardShow.appendChild(divTitleImage);
     divCardShow.appendChild(summaryShow);
     divCardShow.appendChild(divForRating);
     divForRating.appendChild(ratingShow);
     showListPage.appendChild(divCardShow);
+    //
   }
 }
 

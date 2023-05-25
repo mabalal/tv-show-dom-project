@@ -7,7 +7,7 @@ body {
 #show-page {
   background-color: rgb(216, 226, 242);
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: auto;
   grid-gap: 10px;
   padding: 5px;
@@ -63,14 +63,19 @@ body {
   padding-top: 70px;
 }
 
-.movie-card,
-.div-show {
+.movie-card {
   background-color: rgb(245, 244, 246);
   border-radius: 15px;
   padding-top: 0px;
   margin-top: 0px;
   padding-bottom: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.14);
+}
+.div-show {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  background-color: rgb(153, 164, 181);
 }
 .epName,
 .title-show {
@@ -81,16 +86,29 @@ body {
   margin-top: 0px;
   padding-top: 0px;
 }
+.title-image {
+  border: 2px dash solid;
+}
+.img-show,
 .img-show {
-  /* text-align: center;
+  padding: 10px;
+}
+.rating-div {
+  display: flex;
+  text-align: center;
   align-items: center;
-  justify-content: center; */
+  justify-content: center;
 }
 .image-container {
   padding-top: 5px;
   padding-bottom: 0px;
   height: auto;
   width: auto;
+}
+
+.rating-div {
+  padding-bottom: 0px;
+  border: 5px solid dash;
 }
 .rating-show {
   text-align: center;
