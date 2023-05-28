@@ -6,16 +6,44 @@
     <title>TV Show Project | Mahendra Balal (mabalal)</title>
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <meta
+      name="description"
+      content="This is a web application that displays information about TV shows using data from TVMaze.com"
+    />
   </head>
 
   <body>
-    <div id="root">
+    <div class="header-container" id="header-container">
+      <div class="logo" id="logo"></div>
+      <div class="show-selector">
+        <select name="show-list" id="show-select" class="show-select"></select>
+      </div>
+      <div id="selectBar" class="selectBar">
+        <select id="selector" class="form-control"></select>
+      </div>
+
+      <div class="search">
+        <input
+          type="text"
+          id="search"
+          placeholder="search TV episode
+    "
+        />
+        <label for="search">Got <span id="num">0</span> Episode(s)</label>
+      </div>
     </div>
+
+    <div id="root"></div>
+    <p class="selected-card"></p>
+    <div id="show-page"></div>
+    <div id="footer"></div>
 
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
 
     <!-- Loads YOUR javascript code -->
     <script src="script.js"></script>
+    <!-- loading getAllShows function -->
+    <script src="shows.js"></script>
   </body>
 </html>

@@ -1,3 +1,121 @@
 #root {
-  color: red;
+  color: rgb(28, 28, 30);
+}
+body {
+  background-color: rgb(216, 226, 242);
+}
+#show-page {
+  background-color: rgb(216, 226, 242);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: auto;
+  grid-gap: 10px;
+  padding: 5px;
+  margin: 10px;
+}
+.top-container {
+  background-color: rgb(216, 226, 242);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  grid-gap: 10px;
+  padding: 5px;
+  margin: 10px;
+}
+.header-container {
+  display: flex;
+  /* display: grid;
+  grid-template-columns: 400px 1fr 1fr 1fr;
+  grid-template-rows: 1; */
+  /* flex-direction: left; */
+  background-color: rgb(216, 226, 242);
+  justify-content: space-between;
+}
+.logo {
+  grid-column: 1;
+  height: 200px;
+  width: 400px;
+  padding: 0px;
+}
+.video-logo {
+  height: 200px;
+  width: 400px;
+  padding: 0px;
+}
+
+#search {
+  height: 35px;
+  border: 1px solid darkblue;
+  border-radius: 5px;
+}
+.form-control,
+.show-select {
+  height: 40px;
+  border: 1px solid darkblue;
+  border-radius: 5px;
+  margin-left: 0px;
+  padding-left: 0px;
+  justify-content: space-between;
+}
+.show-selector,
+.selectBar,
+.search {
+  padding-top: 70px;
+}
+
+.movie-card {
+  background-color: rgb(245, 244, 246);
+  border-radius: 15px;
+  padding-top: 0px;
+  margin-top: 0px;
+  padding-bottom: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.14);
+}
+.div-show {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  background-color: rgb(153, 164, 181);
+}
+.epName,
+.title-show {
+  text-align: center;
+  font-size: 23px;
+  color: white;
+  background-color: rgb(43, 55, 103);
+  margin-top: 0px;
+  padding-top: 0px;
+}
+.title-image {
+  border: 2px dash solid;
+}
+.img-show,
+.img-show {
+  padding: 10px;
+}
+.rating-div {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.image-container {
+  padding-top: 5px;
+  padding-bottom: 0px;
+  height: auto;
+  width: auto;
+}
+
+.rating-div {
+  padding-bottom: 0px;
+  border: 5px solid dash;
+}
+.rating-show {
+  text-align: center;
+  background-color: rgb(36, 58, 78);
+  color: rgb(227, 217, 217);
+}
+#footer {
+  justify-content: center;
+  text-align: center;
 }
